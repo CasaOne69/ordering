@@ -1,3 +1,48 @@
 body {
     margin: 0;
+    font-family: 'Smythe', cursive;
 } 
+
+header {
+    color: white;
+    width: 600px;
+    height: 350px;
+    background-image: url("images/headerimg.jpeg")  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid saddlebrown;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    
+}
+.top {
+    margin: 0;
+    padding-top: 40px;
+    padding-left: 60px;
+   font-size: 50px;
+    
+    
+}
+
+.intro {
+    padding-left: 40px;
+    padding-top: 20px;
+    font-size: 25px ;
+}
+
+.items {
+    background: #FFF;
+    width: 600px;
+    border-left: 5px solid saddlebrown ;
+    border-right: 5px solid saddlebrown;
+    border-bottom: 5px solid saddlebrown;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}
+
+
