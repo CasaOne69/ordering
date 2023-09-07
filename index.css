@@ -3,6 +3,14 @@ body {
     font-family: 'Smythe', cursive;
 } 
 
+hr {
+    height: 1px dotted ;
+    background-color: grey;
+    margin-bottom: 30px;
+    margin-left: 5px;
+    margin-right:5px;
+  }
+
 header {
     color: white;
     width: 600px;
@@ -14,16 +22,14 @@ header {
     margin-right: auto;
     border: 5px solid saddlebrown;
     border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    
+    border-top-right-radius: 25px;   
+    margin-bottom: -50px;
 }
 .top {
     margin: 0;
     padding-top: 40px;
     padding-left: 45px;
-    font-size: 50px;
-    
-    
+    font-size: 50px; 
 }
 
 .intro {
@@ -42,6 +48,24 @@ header {
     margin-right: auto;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+    
+.image {
+    font-size: 40px;
+    padding-right: 20px;
+  }   
+  
+.add {
+    display: flex;
+    justify-content: right;
+    margin-right: 40px;
+    margin-top: -50px;
+    
 }
 
 
