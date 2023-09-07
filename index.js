@@ -14,7 +14,7 @@ return dogshit.map(function (ratshit){
                         <div><h3>Price: £${ratshit.price}</h3></div>
                     </div>
         </div>
-        <div class="add"><p></p><img src="/images/add.png" alt="Buy"></p></div>
+        <div class="add"><p></p><img src="/images/addtocart.png" alt="Buy"></p></div>
     </section>
     <hr>
     ` 

@@ -2,6 +2,9 @@ body {
     margin: 0;
     font-family: 'Smythe', cursive;
 } 
+p {
+    font-size: 20px;
+}
 
 hr {
     height: 1px dotted ;
