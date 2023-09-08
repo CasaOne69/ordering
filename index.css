@@ -70,5 +70,42 @@ header {
     margin-top: -50px;
     
 }
+.orderdetails {
+    background: #FFF;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ods {
+    text-align: center;
+    color:green
+}
 
-
+.output {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.ordertot {
+display: flex;
+justify-content: space-between;
+    border-top: 2px solid black;
+    margin-left: 50px;
+    background: #FFF;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.orderbtn {
+   background-color: green; 
+   max-height: 50px;
+   margin-top: 10px;
+   border: 1px solid gray;
+   border-radius: 10px;
+   font-size: 20px;
+   font-weight: bold;
+   color: white;
+}
+.none {
+    display:none;
+}
