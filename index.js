@@ -46,7 +46,6 @@ getId()
 
 //function to render to the lower section
 function renderAdded(name, cost) {
-    
     document.getElementById('orderdetails').innerHTML += `
     <div class ="output" >
     ${name} - £${cost.toFixed(2)}<br>
@@ -58,7 +57,7 @@ function renderAdded(name, cost) {
 
    console.log(cost)
    console.log("Total sum:", totalSum.toFixed(2))
-   
+   document.getElementById('hiddenSection').style.display = 'block';
     }
     
    
