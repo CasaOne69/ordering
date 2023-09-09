@@ -25,7 +25,7 @@
 
         <div class="ordertot" >
             <h2 id="totalprice"></h2>
-            <button class="orderbtn">Complete Order</button>
+            <button class="orderbtn" id="completeOrderButton">Complete Order</button>
            </div>   
     
 </section> 
@@ -36,3 +36,25 @@
     </body>
 </html>
 
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-popup" id="closePopup">&times;</span>
+        <h2>Pay for Your Order</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="csv">CSV:</label>
+                <input type="text" id="csv" name="csv" required>
+            </div>
+            <button type="submit" id="payButton">Pay</button>
+        </form>
+        <div id="paymentConfirmation" style="display: none;"></div>
+    </div>
+</div>

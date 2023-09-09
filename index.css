@@ -109,3 +109,12 @@ justify-content: space-between;
 #hiddenSection {
     display: none;
 }
+.remove {
+    float:right;
+    margin-right: 30px;
+    border: none;
+    background: red;
+    color: white;
+    border-radius: 10px;
+    line-height: 25px;
+}
