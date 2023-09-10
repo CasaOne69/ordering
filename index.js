@@ -2,10 +2,9 @@ import menuArray from '/data.js';
 
 let ordersArr = [];
 
-// Function to render out the food items
-function renderFood(dogshit) {
-    return dogshit.map(function (ratshit) {
-        const { name, ingredients, id, price, emoji } = ratshit;
+function renderFood(menuItems) {
+    return menuItems.map(function (item) {
+        const { name, ingredients, id, price, emoji } = item;
         return `
         <section class="fooditemslist">
             <div class="container">
@@ -13,17 +12,16 @@ function renderFood(dogshit) {
                 <div>
                     <div><h2>${name}</h2></div>
                     <div><p>Ingredients: ${ingredients}</p></div>
-                    <div><h3>Price: £${ratshit.price}</h3></div>
+                    <div><h3>Price: £${price}</h3></div>
                 </div>
             </div>
-            <div class="add"><p><img src="/images/addtocart.png" alt="Buy" data-id="${id}" data-cost="${ratshit.price}" data-name="${name}"></p></div>
+            <div class="add"><p><img src="/images/addtocart.png" alt="Buy" data-id="${id}" data-cost="${price}" data-name="${name}"></p></div>
         </section>
         <hr>
         `;
     }).join("");
 }
 
-// Function to get the click id
 function getId() {
     document.addEventListener('click', function(e) {
         if (e.target.dataset.id) {
@@ -31,14 +29,13 @@ function getId() {
                 id: e.target.dataset.id,
                 value: parseFloat(e.target.dataset.cost)
             });
-            document.getElementById('hiddenSection').style.display = 'block';
+            toggleDisplay('#hiddenSection', 'block');
             renderAdded(e.target.dataset.id, e.target.dataset.cost, e.target.dataset.name);
             updateTotalPrice();
         }
     });
 }
 
-// Separate event listener for "Remove" buttons
 document.getElementById('orderdetails').addEventListener('click', function(e) {
     if (e.target.dataset.butid) {
         const itemIdToRemove = e.target.dataset.butid;
@@ -53,7 +50,6 @@ document.getElementById('orderdetails').addEventListener('click', function(e) {
 
 getId();
 
-// Function to render to the lower section
 function renderAdded(id, cost, name) {
     document.getElementById('orderdetails').innerHTML += `
     <div class="output">
@@ -62,12 +58,10 @@ function renderAdded(id, cost, name) {
     `;
 }
 
-// Function to calculate and update the total price
 function updateTotalPrice() {
     const totalPrice = ordersArr.reduce((acc, order) => acc + order.value, 0);
     document.getElementById('totalprice').textContent = `Total Price: £${totalPrice.toFixed(2)}`;
 
-    // Check if ordersArr is empty and hide the section if it is
     const totalOrdersSection = document.getElementById('hiddenSection');
     if (ordersArr.length === 0) {
         totalOrdersSection.style.display = 'none';
@@ -76,7 +70,43 @@ function updateTotalPrice() {
     }
 }
 
-// Returning to the DOM
+function toggleDisplay(selector, displayValue) {
+    const elemType = selector.charAt(0);
+    let elem;
+
+    if (elemType === '#') {
+        elem = document.getElementById(selector.slice(1));
+    } else if (elemType === '.') {
+        elem = document.querySelector(selector);
+    } else {
+        console.error("Unsupported selector type");
+        return;
+    }
+
+    elem.style.display = displayValue;
+}
+
+document.getElementById('completeOrder').addEventListener('click', function() {
+    toggleDisplay('.popup', 'block');
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    toggleDisplay('.popup', 'none');
+});
+
+document.getElementById('payButton').addEventListener('click', function(e) {
+    e.preventDefault();
+    toggleDisplay('.popup', 'none');
+
+    alert("Payment Received! Enjoy Your Food!");
+
+    document.getElementById('orderdetails').innerHTML = '';
+
+    document.getElementById('totalprice').textContent = 'Total Price: £0.00';
+
+    ordersArr = [];
+
+    toggleDisplay('#hiddenSection', 'none');
+});
+
 document.getElementById('items').innerHTML = renderFood(menuArray);
-
-
