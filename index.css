@@ -201,6 +201,18 @@ input[type="text"]:focus {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+.finalbtn1 {
+    padding: 10px 20px;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin:auto;
+}
 
 button:hover {
     background-color: #0056b3; /* Darken on hover */
@@ -209,4 +221,135 @@ button:hover {
 #paymentConfirmation {
     margin-top: 20px;
     font-weight: 600;
+}
+
+.star-rating {
+    display: inline-block;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: grey;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+.star-rating label {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 24px; /* You can adjust this value based on your preference */
+    padding: 0 5px; /* Optional: Adds some space between the stars */
+}
+.reviewsList {
+    margin-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+    text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.reviewItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.reviewItem:last-child {
+    border-bottom: none;
+    
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    
+}
+
+.reviewComment {
+    flex: 1;
+    margin-left: 20px;
+    text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    
+}
+
+.reviewRating {
+    font-weight: bold;
+    color: #FFD700; /* Gold color */
+    
+}
+#customer-reviews {
+    background: linear-gradient(135deg, #F9F6FF 0%, #CFD9E6 100%);
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 800px;
+    margin: 40px auto;
+    overflow: hidden;
+    width: 600px;
+    text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+#customer-reviews h2 {
+    width: 600px;
+    color: #2c3e50;               /* Dark blue color for a modern look */
+    font-size: 2.5em;             /* Slightly larger font size */
+    margin-bottom: 30px;          /* More space between the header and the content below */
+    text-transform: uppercase;    /* Convert text to uppercase for emphasis */
+    letter-spacing: 2px;          /* Slight letter spacing for better aesthetics */
+    font-weight: bold;            /* Bold font weight for emphasis */
+    text-align: center;           /* Ensure it's center aligned */
+    border-bottom: 3px solid #3498db; /* Underline for emphasis with a blue hue */
+    padding-bottom: 10px;         /* Space out the underline from the text */
+    display: inline-block;        /* This makes the border fit the content's width, not the container's width */
+    margin: 0 auto;       
+           /* Centering the inline-block element */
+           text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+ h2 {
+    text-align: center;  
+ }
+
+.review-entry {
+    text-align: center;  
+    width: 600px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    transition: transform 0.2s;
+
+    /* This is an optional hover effect to slightly elevate a review when hovered */
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.star-rating .rated {
+    color: gold;
 }

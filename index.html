@@ -1,60 +1,90 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-       <link rel="stylesheet" href="index.css">
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-         <div>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div>
             <h1 class="top">Jimmy's Dinner 🍽️</h1>
             <p class="intro">🍕 The Best Pizzas and Burgers In Town</p>
             <p class="intro">🧃 Fast Home Delivery 24/7</p>
-         </div>
-        </header>
+        </div>
+    </header>
 
-      <div class="items" id="items"></div>
+    <div class="items" id="items"></div>
 
-<section id="hiddenSection">
-      <div class="orderdetails" id="orderdetails">
-        <h1 class="ods">Order Details</h1>
-    </div>
+    <section id="hiddenSection">
+        <div class="orderdetails" id="orderdetails">
+            <h1 class="ods">Order Details</h1>
+        </div>
 
-        <div class="ordertot" >
+        <div class="ordertot">
             <h2 id="totalprice"></h2>
             <button class="orderbtn" id="completeOrder">Complete Order</button>
-           </div>   
-    
-</section> 
-    
-      
+        </div>
+    </section>
 
-	<script src="index.js" type="module"></script>
-    </body>
-</html>
+    <!-- Customer Reviews Section -->
+    <section id="customerReviews">
+        <h2>What Our Customers Say About Us</h2>
+        <button id="clearReviews" style="display: none;" class="finalbtn1">Clear All Reviews</button>
+        <div id="reviewsList"></div>
+    </section>
 
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <span class="close-popup" id="closePopup">&times;</span>
-        <h2>Pay for Your Order</h2>
-        <form id="orderForm">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+    <script src="index.js" type="module"></script>
+
+    <div class="review-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="background-color: #ffffff; margin: 100px auto; padding: 20px; width: 50%;">
+            <h2>Rate Your Experience</h2>
+
+            <div class="star-rating">
+                <input type="radio" name="rating" value="5" id="rating5"><label for="rating5">☆</label>
+                <input type="radio" name="rating" value="4" id="rating4"><label for="rating4">☆</label>
+                <input type="radio" name="rating" value="3" id="rating3"><label for="rating3">☆</label>
+                <input type="radio" name="rating" value="2" id="rating2"><label for="rating2">☆</label>
+                <input type="radio" name="rating" value="1" id="rating1"><label for="rating1">☆</label>
             </div>
-            <div class="form-group">
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" id="cardNumber" name="cardNumber" required>
-            </div>
-            <div class="form-group">
-                <label for="csv">CSV:</label>
-                <input type="text" id="csv" name="csv" required>
-            </div>
-            <button type="submit" id="payButton" class="finalbtn">Pay</button>
-        </form>
-        <div id="paymentConfirmation" style="display: none;"></div>
+
+            <br>
+
+            <textarea rows="4" cols="50" id="reviewComment" placeholder="Write your comment here..."></textarea><br><br>
+
+            <button id="submitReview">Submit Review</button>
+            <button id="cancelReview">Cancel</button>
+        </div>
     </div>
-</div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-popup" id="closePopup">&times;</span>
+            <h2>Pay for Your Order</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="csv">CSV:</label>
+                    <input type="text" id="csv" name="csv" required>
+                </div>
+                <button type="submit" id="payButton" class="finalbtn">Pay</button>
+            </form>
+            <div id="paymentConfirmation" style="display: none;"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

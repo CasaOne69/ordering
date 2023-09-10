@@ -59,32 +59,36 @@ function renderAdded(id, cost, name) {
 }
 
 function updateTotalPrice() {
-    const totalPrice = ordersArr.reduce((acc, order) => acc + order.value, 0);
-    document.getElementById('totalprice').textContent = `Total Price: £${totalPrice.toFixed(2)}`;
+    let originalPrice = ordersArr.reduce((acc, order) => acc + order.value, 0);
+    let discount = 0;
 
-    const totalOrdersSection = document.getElementById('hiddenSection');
+    if (ordersArr.length >= 2) {
+        discount = originalPrice * 0.1;
+    }
+
+    const discountedPrice = originalPrice - discount;
+
+    let totalPriceMessage = `Total Price: £${discountedPrice.toFixed(2)}`;
+    if (discount > 0) {
+        totalPriceMessage += ` (Original: £${originalPrice.toFixed(2)}, Saved: £${discount.toFixed(2)})`;
+    }
+
+    document.getElementById('totalprice').textContent = totalPriceMessage;
+
+    // Check if ordersArr is empty and hide #hiddenSection if it is
     if (ordersArr.length === 0) {
-        totalOrdersSection.style.display = 'none';
-    } else {
-        totalOrdersSection.style.display = 'block';
+        toggleDisplay('#hiddenSection', 'none');
     }
 }
 
 function toggleDisplay(selector, displayValue) {
-    const elemType = selector.charAt(0);
-    let elem;
-
-    if (elemType === '#') {
-        elem = document.getElementById(selector.slice(1));
-    } else if (elemType === '.') {
-        elem = document.querySelector(selector);
-    } else {
-        console.error("Unsupported selector type");
-        return;
-    }
-
+    const elem = document.querySelector(selector);
     elem.style.display = displayValue;
 }
+
+// ... (rest of the code remains unchanged)
+
+
 
 document.getElementById('completeOrder').addEventListener('click', function() {
     toggleDisplay('.popup', 'block');
@@ -97,16 +101,81 @@ document.getElementById('closePopup').addEventListener('click', function() {
 document.getElementById('payButton').addEventListener('click', function(e) {
     e.preventDefault();
     toggleDisplay('.popup', 'none');
-
-    alert("Payment Received! Enjoy Your Food!");
-
-    document.getElementById('orderdetails').innerHTML = '';
-
-    document.getElementById('totalprice').textContent = 'Total Price: £0.00';
-
-    ordersArr = [];
-
-    toggleDisplay('#hiddenSection', 'none');
+    toggleDisplay('.review-popup', 'block');
 });
 
+document.getElementById('submitReview').addEventListener('click', function() {
+    const ratingElems = document.querySelectorAll('.star-rating input');
+    let selectedRating;
+
+    ratingElems.forEach(elem => {
+        if (elem.checked) {
+            selectedRating = elem.value;
+        }
+    });
+
+    const comment = document.getElementById('reviewComment').value;
+    displayUserFeedback(selectedRating, comment);
+
+    toggleDisplay('.review-popup', 'none');
+    document.getElementById('orderdetails').innerHTML = '';
+    document.getElementById('totalprice').textContent = 'Total Price: £0.00';
+    ordersArr = [];
+    toggleDisplay('#hiddenSection', 'none');
+    updateCustomerReviewSectionVisibility();
+});
+
+function displayUserFeedback(rating, comment) {
+    const reviewList = document.getElementById('reviewsList'); 
+    const reviewEntry = document.createElement('div');
+    reviewEntry.className = 'review-entry';
+    reviewEntry.innerHTML = `
+        <strong>Rating:</strong> <span class="star-rating">${"☆".repeat(parseInt(rating)).split("").map(star => `<span class="rated">${star}</span>`).join("")}</span><br>
+        <strong>Comment:</strong> ${comment}
+    `;
+    reviewList.appendChild(reviewEntry);
+
+    const reviews = JSON.parse(localStorage.getItem('customerReviews') || '[]');
+    const isDuplicate = reviews.some(review => review.rating === rating && review.comment === comment);
+    if (!isDuplicate) {
+        reviews.push({ rating, comment });
+        localStorage.setItem('customerReviews', JSON.stringify(reviews));
+    }
+
+    updateCustomerReviewSectionVisibility();
+}
+
+document.getElementById('cancelReview').addEventListener('click', function() {
+    toggleDisplay('.review-popup', 'none');
+});
+
+function loadReviewsFromLocalStorage() {
+    const savedReviews = JSON.parse(localStorage.getItem('customerReviews') || '[]');
+    const reviewList = document.getElementById('reviewsList');
+    reviewList.innerHTML = '';
+    savedReviews.forEach(review => {
+        displayUserFeedback(review.rating, review.comment);
+    });
+    updateCustomerReviewSectionVisibility();
+}
+
 document.getElementById('items').innerHTML = renderFood(menuArray);
+loadReviewsFromLocalStorage();
+
+document.getElementById('clearReviews').addEventListener('click', function() {
+    localStorage.removeItem('customerReviews');
+    const reviewList = document.getElementById('reviewsList');
+    reviewList.innerHTML = '';
+    updateCustomerReviewSectionVisibility();
+    alert("All reviews have been cleared.");
+});
+
+function updateCustomerReviewSectionVisibility() {
+    const savedReviews = JSON.parse(localStorage.getItem('customerReviews') || '[]');
+    if (savedReviews.length > 0) {
+        toggleDisplay('#customerReviews', 'block');
+        toggleDisplay('#clearReviews', 'block');
+    } else {
+        toggleDisplay('#customerReviews', 'none');
+    }
+}
